@@ -17,6 +17,7 @@ JL_EXECUTABLE_NAME ?= launcher
 # paths are relative to executable file
 JL_JAVA_RELATIVE_PATH ?= jre/bin/java
 JL_JAR_RELATIVE_PATH ?= launcher.jar
+JL_RELATIVE_PATH ?= 1
 
 # resources on windows
 JL_RC_FILE ?= resources/resources.rc
@@ -32,6 +33,7 @@ compile: $(JL_RESOURCES_TARGET)
 	$(JL_CC) -g -Wall -std=gnu99 $(JL_COMPILER_OPTIONS) \
 		-DJL_JAVA_RELATIVE_PATH=\"$(JL_JAVA_RELATIVE_PATH)\" \
 		-DJL_JAR_RELATIVE_PATH=\"$(JL_JAR_RELATIVE_PATH)\" \
+		-DJL_RELATIVE_PATH=\"$(JL_RELATIVE_PATH)\" \
 		jl_common.c \
 		jl_heap.c \
 		jl_platform_$(JL_PLATFORM).c \
