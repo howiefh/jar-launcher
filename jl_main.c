@@ -26,8 +26,12 @@ int main() {
     strncpy(jar_path, parent_path, parent_len);
     strcat(jar_path, JL_JAR_RELATIVE_PATH);
     // start child
-    printf("Launching java: '%s -jar %s'\n", java_path, jar_path);
-    jl_exec_java(java_path, jar_path);
+    char * real_java_path = get_java_path();
+    if (real_java_path==NULL) {
+       real_java_path = java_path; 
+    }
+    printf("Launching java: '%s -jar %s'\n", real_java_path, jar_path);
+    jl_exec_java(real_java_path, jar_path);
     // free heap
     jl_heap->free();
     return 0;
