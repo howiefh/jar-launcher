@@ -1,6 +1,9 @@
 #pragma once
 #include <stdio.h>
-
+#define JDK_BIN  "/bin/java" 
+#define JRE_BIN "/jre/bin/java"
+#define WIN_JDK_BIN  "/bin/java.exe" 
+#define WIN_JRE_BIN "/jre/bin/java.exe"
 /** 
  * Frees memory using jl_heap, reports error message to stdout, shutdowns program
  */

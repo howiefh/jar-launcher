@@ -72,15 +72,20 @@ char * merge_string(char * first, char * second){
     return res;
 }
 char * java_path_from_java_home(){
-    char jdk_bin[10] = "/bin/java"; 
-    char jre_bin[14] = "/jre/bin/java";
     char * path;
+    char * jdk_bin_fullpath;
+	char * jre_bin_fullpath;
     path = getenv("JAVA_HOME");
     if (path == NULL) {
         return NULL;
     }
-    char * jdk_bin_fullpath = merge_string(path, jdk_bin);
-    char * jre_bin_fullpath = merge_string(path, jre_bin);
+    if(!strcmp(JL_PLATFORM,"windows")){
+		jdk_bin_fullpath = merge_string(path, WIN_JDK_BIN);
+    	jre_bin_fullpath = merge_string(path, WIN_JRE_BIN);
+	} else {
+	    jdk_bin_fullpath = merge_string(path, JDK_BIN);
+    	jre_bin_fullpath = merge_string(path, JRE_BIN);
+    }
     if (!access(jdk_bin_fullpath,0)) {
         free(jre_bin_fullpath);
         return jdk_bin_fullpath; 
@@ -92,7 +97,6 @@ char * java_path_from_java_home(){
     free(jdk_bin_fullpath);
     return NULL;
 }
-
 
 char * get_java_path(){
     char env[4] = "env";

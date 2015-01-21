@@ -30,6 +30,7 @@ all: compile
 
 compile: $(JL_RESOURCES_TARGET)
 	$(JL_CC) -g -Wall -std=gnu99 $(JL_COMPILER_OPTIONS) \
+		-DJL_PLATFORM=\"$(JL_PLATFORM)\" \
 		-DJL_JAVA_RELATIVE_PATH=\"$(JL_JAVA_RELATIVE_PATH)\" \
 		-DJL_JAR_RELATIVE_PATH=\"$(JL_JAR_RELATIVE_PATH)\" \
 		jl_common.c \
